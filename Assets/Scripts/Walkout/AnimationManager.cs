@@ -20,8 +20,23 @@ public class AnimationManager : MonoBehaviour
         
     }
 
+    void PlayAnimationOnTrigger(int pos)
+    {
+        if (pos >= animatorList.Count)
+        {
+            Debug.Log("Out of range.");
+            return;
+        }
+        else
+        {
+            animatorList[pos].SetBool("Play", true);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        animatorList[0].SetBool("Play", true);
+        int pos = Random.Range(0, animatorList.Count);
+        Debug.Log(pos);
+        PlayAnimationOnTrigger(pos);
     }
 }
