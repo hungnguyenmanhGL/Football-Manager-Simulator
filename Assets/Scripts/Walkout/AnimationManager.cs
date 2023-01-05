@@ -36,7 +36,7 @@ public class AnimationManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         int pos = Random.Range(0, animatorList.Count);
-        Debug.Log(pos);
+        //Debug.Log(pos);
         PlayAnimationOnTrigger(pos);
     }
 }

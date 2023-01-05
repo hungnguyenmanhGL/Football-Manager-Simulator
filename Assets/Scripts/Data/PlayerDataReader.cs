@@ -6,6 +6,7 @@ using System.Text;
 
 public class PlayerDataReader : MonoBehaviour
 {
+    public static PlayerDataReader instance;
     public List<TextAsset> textFileList = new List<TextAsset>();
 
     Player index = new Player();
@@ -14,6 +15,9 @@ public class PlayerDataReader : MonoBehaviour
 
     void Start()
     {
+        if (!instance) instance = this;
+        else Destroy(this);
+
         foreach(TextAsset jsonText in textFileList)
         {
             string filePath = Application.dataPath + "/Files/" + jsonText.name + ".json";
@@ -69,6 +73,7 @@ public class PlayerDataReader : MonoBehaviour
                     sb.Replace("\"", "");
                     sb.Replace(" ", "");
                     sb.Replace(",", "");
+                    sb.Replace(".png", "");
                     index.imgName = sb.ToString();
                 }
                 if (str.Contains("\"id\""))
